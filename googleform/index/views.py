@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth.models import User
-from .models import Form
+from .models import Form,User
 from .serializers import FormSerializer
 class FormAPI(APIView):
 
@@ -18,10 +17,11 @@ class FormAPI(APIView):
             return Response({
                 'status':True,
                 'message': 'form created successfully',
-                'data':serializer.data
+                'data': serializer.data
             })
 
         except Exception as e:
+            print(e)
             return Response({
                 'status':False,
                 'message': 'something went wrong',

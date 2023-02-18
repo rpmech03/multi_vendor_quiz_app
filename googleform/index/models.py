@@ -6,7 +6,6 @@ class User(AbstractUser, models.Model):
     email = models.EmailField(unique = True)
 
 class BaseModel(models.Model):
-    # uuid = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
@@ -32,7 +31,7 @@ class Form(BaseModel):
     collect_email = models.BooleanField(default=False)
     questions = models.ManyToManyField(Questions, related_name= "questions")
 
-    @staticmethod
+    @staticmethod  #islye likh rhe h taki class ka bina obj bnaye call kr ske
     def create_blank_form(user):
         form_token = generate_random_string()
         choices = Choices.objects.create(choice = "Option 1")
